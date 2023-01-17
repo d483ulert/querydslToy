@@ -3,11 +3,13 @@ package com.dev.toy.entity;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Getter
 @Entity
+@NoArgsConstructor
 public class Board extends BaseEntity{
 
     @Id
