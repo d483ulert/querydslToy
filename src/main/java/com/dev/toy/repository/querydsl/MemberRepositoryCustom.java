@@ -1,4 +1,4 @@
-package com.dev.toy.repository;
+package com.dev.toy.repository.querydsl;
 
 public interface MemberRepositoryCustom {
 }
