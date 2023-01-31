@@ -28,11 +28,14 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
 	implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.1.0'
+	implementation 'org.springframework.boot:spring-boot-starter-validation:2.2.6.RELEASE'
 	annotationProcessor "com.querydsl:querydsl-apt:${queryDslVersion}"
-	compileOnly 'org.projectlombok:lombok'
+	compileOnly 'org.projectlombok:lombok:1.18.24'
+	annotationProcessor 'org.projectlombok:lombok:1.18.24'
+	testCompileOnly 'org.projectlombok:lombok:1.18.24'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'mysql:mysql-connector-java'
-	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
