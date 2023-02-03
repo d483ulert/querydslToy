@@ -18,7 +18,7 @@ public class Board extends BaseEntity {
 
     private String title;
 
-    private String writer;
+    private String member_id;
 
     private String content;
 
@@ -30,9 +30,9 @@ public class Board extends BaseEntity {
 
 
     @Builder
-    private Board(String title, String writer, String content, int view) {
+    private Board(String title, String member_id, String content, int view) {
         this.title = title;
-        this.writer = writer;
+        this.member_id = member_id;
         this.content = content;
         this.view = view;
     }

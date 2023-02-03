@@ -26,7 +26,7 @@ public class BaseEntity {
 
     @CreatedDate
     @Column(updatable = false)
-    private String create_member;
+    private String created_member;
 
     @LastModifiedBy
     private String modified_member;
