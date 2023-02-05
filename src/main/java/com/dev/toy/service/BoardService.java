@@ -6,11 +6,11 @@ import com.dev.toy.entity.Board;
 import com.dev.toy.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +21,17 @@ public class BoardService {
 
     @Transactional
     public ResultDto<BoardDto> BoardList(){
-        return (ResultDto<BoardDto>) repository.findAll(Sort.by(Sort.Direction.DESC,"board_idx"));
+        PageRequest page = PageRequest.of(0,10,Sort.by(Sort.Direction.DESC,"board_idx"));
+        Page<Board> boards = repository.findAll(page);
+
+        Page<BoardDto> map = boards.map(board -> new BoardDto(
+                board.getBoardIdx(),
+                board.getTitle(),
+                board.getWriter(),
+                board.getContent(),
+                board.getView())
+        );
+        return (ResultDto<BoardDto>) map;
     }
 
     @Transactional
@@ -29,7 +39,7 @@ public class BoardService {
         Board board = new Board();
         board.builder()
                 .content(boardDto.getContent())
-                .writer(boardDto.getMember_id())
+                .writer(boardDto.getWriter())
                 .view(0)
                 .title(boardDto.getTitle());
         repository.save(board);

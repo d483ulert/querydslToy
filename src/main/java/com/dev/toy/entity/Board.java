@@ -1,41 +1,35 @@
 package com.dev.toy.entity;
 
 import com.dev.toy.dto.BoardDto;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-
+import lombok.*;
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Getter
 @Entity
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
-public class Board extends BaseEntity {
+@Table(name="board")
+public class Board extends BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue
-    private Long board_idx;
+    private Long boardIdx;
 
     private String title;
 
-    private String member_id;
+    private String writer;
 
     private String content;
 
-    private int view;
+    private Integer view;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
 
-    @Builder
-    private Board(String title, String member_id, String content, int view) {
-        this.title = title;
-        this.member_id = member_id;
-        this.content = content;
-        this.view = view;
-    }
 
     public void update(BoardDto boardDto) {
         this.title = boardDto.getTitle();

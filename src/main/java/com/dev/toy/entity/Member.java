@@ -1,10 +1,8 @@
 package com.dev.toy.entity;
 
 import lombok.*;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -13,12 +11,14 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @ToString
+@Table(name="member")
 public class Member extends BaseEntity {
 
     @Id
     @GeneratedValue
-    private Long member_idx;
+    private Long memberIdx;
 
 
     @NotNull
