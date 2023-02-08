@@ -24,7 +24,6 @@ public class BoardController {
         return boardService.BoardList();
     }
 
-
     @PostConstruct
     public void InitData() {
         Board board = new Board();
