@@ -2,10 +2,10 @@ package com.dev.toy.repository.querydsl;
 
 import com.dev.toy.dto.BoardDto;
 import com.dev.toy.dto.BoardSearchCondition;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface BoardRepositoryCustom {
 
-    List<BoardDto> searchBoardList(BoardSearchCondition condition);
+    Page<BoardDto> searchBoardList(BoardSearchCondition condition, Pageable pageable);
 }
