@@ -2,14 +2,18 @@ package com.dev.toy.controller;
 
 import com.dev.toy.common.ResultDto;
 import com.dev.toy.dto.BoardDto;
+import com.dev.toy.dto.BoardSearchCondition;
 import com.dev.toy.entity.Board;
 import com.dev.toy.repository.BoardRepository;
 import com.dev.toy.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.PostConstruct;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/board")
@@ -20,8 +24,8 @@ public class BoardController {
     private final BoardRepository repository;
 
     @PostMapping("")
-    public ResultDto<BoardDto> List() {
-        return boardService.BoardList();
+    public ResultDto<BoardDto> List(@Valid @RequestBody BoardSearchCondition condition, Pageable pageable) {
+        return boardService.BoardList(condition,pageable);
     }
 
     @PostConstruct
