@@ -7,7 +7,6 @@ import java.io.Serializable;
 
 @Getter
 @Entity
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="board")
@@ -26,10 +25,16 @@ public class Board extends BaseEntity implements Serializable {
     private Integer view;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "memberId")
     private Member member;
 
-
+    @Builder
+    public Board(String title,String writer, String content, Integer view){
+        this.title = title;
+        this.writer =writer;
+        this.content = content;
+        this.view = view;
+    }
 
     public void update(BoardDto boardDto) {
         this.title = boardDto.getTitle();

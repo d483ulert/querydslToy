@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import javax.annotation.PostConstruct;
 
 @Service
 @RequiredArgsConstructor
@@ -19,15 +20,15 @@ public class BoardService {
     private final BoardRepository repository;
 
     @Transactional
-    public Page<BoardDto> BoardList(BoardSearchCondition condition, Pageable pageable){
-        return repository.searchBoardList(condition,pageable);
+    public Page<BoardDto> BoardList(BoardSearchCondition condition, Pageable pageable) {
+        return repository.searchBoardList(condition, pageable);
     }
 
 
     @Transactional
-    public void Write(BoardDto boardDto){
+    public void Write(BoardDto boardDto) {
         Board board = new Board();
-        board.builder()
+        Board.builder()
                 .content(boardDto.getContent())
                 .writer(boardDto.getWriter())
                 .view(0)
@@ -36,13 +37,26 @@ public class BoardService {
     }
 
     @Transactional(readOnly = true)
-    public Board Read(Long board_idx){
+    public Board Read(Long board_idx) {
         return repository.getReferenceById(board_idx);
     }
 
     @Transactional
-    public void Modify(BoardDto boardDto){
+    public void Modify(BoardDto boardDto) {
         Board board = repository.getReferenceById(boardDto.getBoard_idx());
         board.update(boardDto);
+    }
+
+    @PostConstruct
+    public void InitData() {
+        for (int i = 0; i < 30; i++) {
+            Board board = Board.builder()
+                    .writer("테스트" + i)
+                    .title("테스트" + i)
+                    .content("테스트내용" + i)
+                    .view(0)
+                    .build();
+            repository.save(board);
+        }
     }
 }

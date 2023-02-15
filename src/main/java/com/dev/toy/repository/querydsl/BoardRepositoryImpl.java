@@ -8,14 +8,10 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
-
 import static com.dev.toy.entity.QBoard.board;
 import static org.aspectj.util.LangUtil.isEmpty;
 
-@Repository
 public class BoardRepositoryImpl implements BoardRepositoryCustom {
 
     private final JPAQueryFactory factory;
@@ -40,7 +36,8 @@ public class BoardRepositoryImpl implements BoardRepositoryCustom {
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
-
+        System.out.println("**************");
+        System.out.println(content);
         return new PageImpl<>(content,pageable,content.size());
     }
 
