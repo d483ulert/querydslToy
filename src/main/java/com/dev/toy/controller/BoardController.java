@@ -6,6 +6,8 @@ import com.dev.toy.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +22,8 @@ public class BoardController {
     private final BoardService boardService;
 
     @PostMapping("")
-    public Page<BoardDto> List(@Valid @RequestBody BoardSearchCondition condition, Pageable pageable) {
+    public Page<BoardDto> List(@Valid @RequestBody BoardSearchCondition condition,
+                               @PageableDefault(sort="boardIdx", direction = Sort.Direction.DESC)  Pageable pageable) {
         return boardService.BoardList(condition,pageable);
     }
 }

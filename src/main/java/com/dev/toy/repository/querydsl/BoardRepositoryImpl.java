@@ -43,10 +43,10 @@ public class BoardRepositoryImpl implements BoardRepositoryCustom {
 
 
     private BooleanExpression titleEq(String title) {
-        return isEmpty(title) ? null : board.title.eq(title);
+        return isEmpty(title) ? null : board.title.contains(title);
     }
 
     private BooleanExpression writerEq(String writer) {
-        return isEmpty(writer) ? null : board.writer.eq(writer);
+        return isEmpty(writer) ? null : board.writer.contains(writer);
     }
 }
