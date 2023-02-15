@@ -20,13 +20,13 @@ public class BoardService {
     private final BoardRepository repository;
 
     @Transactional
-    public Page<BoardDto> BoardList(BoardSearchCondition condition, Pageable pageable) {
+    public Page<BoardDto> boardList(BoardSearchCondition condition, Pageable pageable) {
         return repository.searchBoardList(condition, pageable);
     }
 
 
     @Transactional
-    public void Write(BoardDto boardDto) {
+    public void create(BoardDto boardDto) {
         Board board = new Board();
         Board.builder()
                 .content(boardDto.getContent())
@@ -37,18 +37,18 @@ public class BoardService {
     }
 
     @Transactional(readOnly = true)
-    public Board Read(Long board_idx) {
+    public Board read(Long board_idx) {
         return repository.getReferenceById(board_idx);
     }
 
     @Transactional
-    public void Modify(BoardDto boardDto) {
+    public void modify(BoardDto boardDto) {
         Board board = repository.getReferenceById(boardDto.getBoard_idx());
         board.update(boardDto);
     }
 
     @PostConstruct
-    public void InitData() {
+    public void initData() {
         for (int i = 0; i < 30; i++) {
             Board board = Board.builder()
                     .writer("테스트" + i)

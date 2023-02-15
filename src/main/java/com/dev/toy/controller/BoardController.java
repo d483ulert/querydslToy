@@ -8,6 +8,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +25,15 @@ public class BoardController {
     private final BoardService boardService;
 
     @PostMapping("")
-    public Page<BoardDto> List(@Valid @RequestBody BoardSearchCondition condition,
+    public Page<BoardDto> list(@Valid @RequestBody BoardSearchCondition condition,
                                @PageableDefault(sort="boardIdx", direction = Sort.Direction.DESC)  Pageable pageable) {
-        return boardService.BoardList(condition,pageable);
+        return boardService.boardList(condition,pageable);
+    }
+
+    @PostMapping("/write")
+    public ResponseEntity create(@Valid @RequestBody BoardDto boardDto) {
+        boardService.create(boardDto);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 }
 

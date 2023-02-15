@@ -6,10 +6,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import javax.persistence.Column;
-import javax.persistence.EntityListeners;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
@@ -30,4 +27,15 @@ public class BaseEntity {
 
     @LastModifiedBy
     private String modified_member;
+
+
+    @PrePersist
+    public void timePersist(){
+        create_date= LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void updatePersist(){
+        update_date= LocalDateTime.now();
+    }
 }

@@ -36,8 +36,6 @@ public class BoardRepositoryImpl implements BoardRepositoryCustom {
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
-        System.out.println("**************");
-        System.out.println(content);
         return new PageImpl<>(content,pageable,content.size());
     }
 
