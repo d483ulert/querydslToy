@@ -2,6 +2,9 @@ package com.dev.toy.entity;
 
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+import net.bytebuddy.implementation.bind.annotation.Super;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -11,6 +14,8 @@ import java.time.LocalDateTime;
 
 @Getter
 @MappedSuperclass
+@SuperBuilder
+@NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class BaseEntity {
 

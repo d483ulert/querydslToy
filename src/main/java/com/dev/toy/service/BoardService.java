@@ -10,7 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import javax.annotation.PostConstruct;
+import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -27,12 +27,14 @@ public class BoardService {
 
     @Transactional
     public void create(BoardDto boardDto) {
-        Board board = new Board();
-        Board.builder()
+        Board board = Board.builder()
                 .content(boardDto.getContent())
                 .writer(boardDto.getWriter())
                 .view(0)
-                .title(boardDto.getTitle());
+                .title(boardDto.getTitle())
+                .create_date(LocalDateTime.now())
+                .created_member(boardDto.getWriter())
+                .build();
         repository.save(board);
     }
 
@@ -47,16 +49,4 @@ public class BoardService {
         board.update(boardDto);
     }
 
-    @PostConstruct
-    public void initData() {
-        for (int i = 0; i < 30; i++) {
-            Board board = Board.builder()
-                    .writer("테스트" + i)
-                    .title("테스트" + i)
-                    .content("테스트내용" + i)
-                    .view(0)
-                    .build();
-            repository.save(board);
-        }
-    }
 }

@@ -33,9 +33,6 @@ public class Member extends BaseEntity {
     @NotNull
     private LocalDateTime birth_day;
 
-    @OneToMany(mappedBy = "member")
-    private List<Board> board = new ArrayList<>();
-
     @Builder
     public Member(String member_id, String member_name, String member_pw,LocalDateTime birth_day) {
         this.member_id = member_id;

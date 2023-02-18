@@ -2,13 +2,15 @@ package com.dev.toy.entity;
 
 import com.dev.toy.dto.BoardDto;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
+
 import javax.persistence.*;
 
 @Getter
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@SuperBuilder
 @Table(name="board")
 public class Board extends BaseEntity  {
 
