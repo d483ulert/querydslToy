@@ -8,7 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,13 +23,13 @@ public class BoardController {
 
     private final BoardService boardService;
 
-    @PostMapping("")
+    @PostMapping("/list")
     public Page<BoardDto> list(@Valid @RequestBody BoardSearchCondition condition,
                                @PageableDefault(sort="boardIdx", direction = Sort.Direction.DESC)  Pageable pageable) {
         return boardService.boardList(condition,pageable);
     }
 
-    @PostMapping("/write")
+    @PostMapping("")
     public ResponseEntity create(@Valid @RequestBody BoardDto boardDto) {
         boardService.create(boardDto);
         return ResponseEntity.ok(HttpStatus.OK);
