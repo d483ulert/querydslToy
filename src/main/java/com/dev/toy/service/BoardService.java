@@ -19,13 +19,13 @@ public class BoardService {
 
     private final BoardRepository repository;
 
-    @Transactional
+    @Transactional(readOnly = true)
     public Page<BoardDto> boardList(BoardSearchCondition condition, Pageable pageable) {
         return repository.searchBoardList(condition, pageable);
     }
 
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void create(BoardDto boardDto) {
         Board board = Board.builder()
                 .content(boardDto.getContent())
@@ -43,7 +43,7 @@ public class BoardService {
         return repository.getReferenceById(board_idx);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void modify(BoardDto boardDto) {
         Board board = repository.getReferenceById(boardDto.getBoard_idx());
         board.update(boardDto);
