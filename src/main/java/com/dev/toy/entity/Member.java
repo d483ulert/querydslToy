@@ -1,18 +1,18 @@
 package com.dev.toy.entity;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @ToString
+@SuperBuilder
 @Table(name="member")
 public class Member extends BaseEntity {
 
@@ -33,11 +33,4 @@ public class Member extends BaseEntity {
     @NotNull
     private LocalDateTime birth_day;
 
-    @Builder
-    public Member(String member_id, String member_name, String member_pw,LocalDateTime birth_day) {
-        this.member_id = member_id;
-        this.member_name = member_name;
-        this.member_pw = member_pw;
-        this.birth_day = birth_day;
-    }
 }

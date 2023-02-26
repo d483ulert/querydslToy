@@ -15,7 +15,6 @@ public class BoardDto extends BaseDto {
     private Integer page;
     private Integer size;
 
-
     @QueryProjection
     public BoardDto (String title, String writer, String content, Integer view){
         this.title = title;

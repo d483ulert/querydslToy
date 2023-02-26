@@ -34,6 +34,8 @@ public class BoardController {
         boardService.create(boardDto);
         return ResponseEntity.ok(HttpStatus.OK);
     }
+
+
 }
 
 
