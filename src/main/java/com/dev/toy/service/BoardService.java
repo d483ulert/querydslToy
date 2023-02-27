@@ -44,8 +44,8 @@ public class BoardService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void modify(BoardDto boardDto) {
-        Board board = repository.getReferenceById(boardDto.getBoard_idx());
+    public void modify(Long boradIdx,BoardDto boardDto) {
+        Board board = repository.getReferenceById(boradIdx);
         board.update(boardDto);
     }
 
