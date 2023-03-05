@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class BoardService {
 
     private final BoardRepository repository;

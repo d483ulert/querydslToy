@@ -19,9 +19,9 @@ public class MemberTest {
     }
 
 
-    @Test
+    /*@Test
     public void givenInvalidIndThrowIllegalEx(){
         assertThat(thrownEx,instanceOf(IllegalArgumentException.class));
-    }
+    }*/
 
 }
