@@ -20,7 +20,6 @@ public class Member extends BaseEntity {
     @GeneratedValue
     private Long memberIdx;
 
-
     @NotNull
     private String member_id;
 

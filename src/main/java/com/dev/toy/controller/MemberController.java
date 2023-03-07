@@ -16,10 +16,9 @@ public class MemberController {
 
     private final MemberService memberService;
 
-        @PostMapping("/login")
-        public MemberDto login (@RequestBody MemberRequestDto reqDto){
-            return memberService.login(reqDto);
+    @PostMapping("/login")
+    public MemberDto login (@RequestBody MemberRequestDto reqDto){
+        return memberService.login(reqDto);
     }
-
 
 }
